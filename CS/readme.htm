@@ -1,0 +1,29 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>How to show a border around a focused editor - Developer Express Example</title>
+<style>
+html, body, form
+{
+	font-family: Tahoma, Arial, Verdana;
+    font-size: small;
+    color: #303440;
+}
+h1 {
+	font-size: 125%;
+	font-weight: normal;
+	color: Black;
+	letter-spacing: 101%;
+}
+</style>
+</head>
+<body>
+<h1>Developer Express Example<br />How to show a border around a focused editor</h1>
+<p>This example shows the way to change the visual appearance of a focused editor. 
+Let's assume that the editor must show an additional border when focused.
+To create this feature, it's necessary to create a custom template and place a new border element there, which will be displayed every time the control is focused. There is a template "WPFEditorsFocusFrame" in the resource dictionary in which rectangle named "FocusFrame" is defined. This rectangle is playing the role of the focus border, and it's Visibility property is bound to the IsKeyboardFocusWithin property of the control. 
+The described template is general for several DXEditors types and is applied automatically to TextEdit, PasswordBoxEdit, ButtonEdit, ComboBoxEdit, LookupEdit and other button-based editors. So, once you define this template, you'll get the same behavior for all of these controls.</p>
+<p>You can find sample updates and versions for different programming languages here:<br /><a href="http://www.devexpress.com/example=E3047">http://www.devexpress.com/example=E3047</a>.</p>
+</body>
+</html>

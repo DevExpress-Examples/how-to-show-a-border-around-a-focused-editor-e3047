@@ -1,0 +1,58 @@
+﻿<Window x:Class="WPFEditorsFocusBorder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/core/internal"
+        xmlns:dxeh="http://schemas.devexpress.com/winfx/2008/xaml/editors/internal"
+        Title="MainWindow" Height="457" Width="525">
+    <Window.Resources>
+        <dxn:RenderTemplate x:Key="{dxet:InplaceBaseEditThemeKey ResourceKey=HoverBorderTemplate}">
+            <dxn:RenderPanel>
+                <dxn:RenderPanel Name="PART_Focus" Visibility="Collapsed">
+                    <dxn:RenderBorder BorderBrush="Red" BorderThickness="2" Opacity="1" />
+                </dxn:RenderPanel>
+            </dxn:RenderPanel>
+            <dxn:RenderTemplate.Triggers>
+                <dxn:RenderTrigger DependencyProperty="{x:Static dxeh:ControlHelper.ShowFocusedStateProperty}" ValueSource="Chrome" Value="True">
+                    <dxn:RenderSetter TargetName="PART_Focus" Property="Visibility" Value="Visible" />
+                </dxn:RenderTrigger>
+            </dxn:RenderTemplate.Triggers>
+        </dxn:RenderTemplate>
+
+        <ControlTemplate x:Key="{dxet:BaseEditThemeKey ResourceKey=TextEditBorderTemplate, ThemeName=Office2016White}" TargetType="ContentControl">
+            <Grid>
+                <dxn:Chrome RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderTemplate, ThemeName=Office2016White}}" />
+                <ContentPresenter Margin="{StaticResource ResourceKey={dxet:InplaceBaseEditThemeKey ResourceKey=TextEditBorderThickness, ThemeName=Office2016White}}" />
+                <dxn:Chrome RenderTemplate="{StaticResource {dxet:InplaceBaseEditThemeKey ResourceKey=HoverBorderTemplate}}" dxeh:ControlHelper.ShowFocusedState="{Binding Path=(dxeh:ControlHelper.ShowFocusedState), RelativeSource={RelativeSource TemplatedParent}}" IsHitTestVisible="False" />
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+    <StackPanel Orientation="Horizontal">
+        <StackPanel>
+            <TextBlock Text="TextEdit:" Margin="5,10,0,0" />
+            <dxe:TextEdit Name="ReadOnlyEdit" HorizontalAlignment="Left"
+                          Width="150" />
+            <TextBlock Text="PasswordBoxEdit:" Margin="5,10,0,0" />
+            <dxe:PasswordBoxEdit Name="passwordBoxEdit1" Width="150" />
+            <TextBlock Text="SpinEdit:" Margin="5,10,0,0" />
+            <dxe:SpinEdit Name="spinEdit1" Width="150" />
+
+            <TextBlock Text="ButtonEdit:" Margin="5,10,0,0" />
+            <dxe:ButtonEdit HorizontalAlignment="Left" Name="buttonEdit1" Width="150" />
+            <TextBlock Text="ComboBoxEdit:" Margin="5,10,0,0" />
+            <dxe:ComboBoxEdit Text="123">
+                <dxe:ComboBoxEdit.Items>
+                    <dxe:ComboBoxEditItem>Item 1</dxe:ComboBoxEditItem>
+                    <dxe:ComboBoxEditItem>Item 2</dxe:ComboBoxEditItem>
+                </dxe:ComboBoxEdit.Items>
+            </dxe:ComboBoxEdit>
+            <TextBlock Text="popupCalcEdit:" Margin="5,10,0,0" />
+            <dxe:PopupCalcEdit Name="popupCalcEdit1" Width="150" />
+            <TextBlock Text="LookUpEdit:" Margin="5,10,0,0" />
+            <dxg:LookUpEdit Name="lookUpEdit1" Width="150" />
+        </StackPanel>
+    </StackPanel>
+</Window>
